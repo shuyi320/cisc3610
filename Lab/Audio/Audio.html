@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <audio id="audio1"><source src="canon.mp3" type="audio/mpeg"></audio>
+    <audio id="audio2"><source src="loop.mp3" type="audio/mpeg"></audio>
+    <audio id="audio3"><source src="lost.mp3" type="audio/mpeg"></audio>
+    <audio id="audio4"><source src="outro.mp3" type="audio/mpeg"></audio>
+    <audio id="audio5"><source src="sunlight.mp3" type="audio/mpeg"></audio>
+    <audio id="audio6"><source src="swing.mp3" type="audio/mpeg"></audio>
+    <div style="position: relative;">
+        <img src="player.jpg" usemap="#playermap" width=100% height=100%>
+        <map name="playermap">
+            <area shape="circle" coords="960,300,120" onclick="playAudio1()">
+            <area shape="circle" coords="750,400,68" onclick="playAudio2()">
+            <area shape="circle" coords="1180,400,68" onclick="playAudio3()">
+            <area shape="circle" coords="960,570,68" onclick="playAudio4()">
+            <area shape="circle" coords="790,580,55" onclick="playAudio5()">
+            <area shape="circle" coords="1130,580,55" onclick="playAudio6()">
+        </map>
+        <div style="position: absolute; top: 0px; left: 600px; font-family: sans-serif;">
+            <botton><a href="index.html"><h1>Homepage</h1></a></botton>
+        </div>
+    </div>
+
+    <script>
+        var x = document.getElementById("audio1");
+        var y = document.getElementById("audio2");
+        var z = document.getElementById("audio3");
+        var s = document.getElementById("audio4");
+        var t = document.getElementById("audio5");
+        var j = document.getElementById("audio6");
+
+        function playAudio1(){
+            x.play();
+        }
+        function playAudio2(){
+            y.play();
+        }
+        function playAudio3(){
+            z.play();
+        }
+        function playAudio4(){
+            s.play();
+        }
+        function playAudio5(){
+            t.play();
+        }
+        function playAudio6(){
+            j.play();
+        }
+    </script>
+</body>
+</html>
