@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>MyCartoon</title>
+    </head>
+    <body>
+        <canvas id="canvas" width="800" height="500"></canvas>
+        <div class = "container"></div>
+        <div id="text"><a href = "../index.html"><h3>Homepage</h3></a></div>
+        
+        
+    <style>
+        body {
+            padding: 0;
+            margin: 0;
+            font-family: cursive;
+            }
+            .container {
+            width: 375px;
+            height: 375px;
+            position: absolute;
+            left: 0%;
+            top: 5%;
+            background: url("./birds.png")  no-repeat;
+            transform: scale(0.1,0.1);
+            animation: fly 2.5s steps(14) infinite;
+            }
+            @keyframes fly {
+                0% {
+                    background-position: 0 0;
+                    transform:translateX(-110px);
+                }
+                /* Use height of image here as y position */
+                100% {
+                    background-position: 0 -5250px;
+                    transform:translateX(1100px)
+                }
+            }
+            canvas{
+                width:100%;
+                height:100%;
+            }
+            #text{
+                position: absolute;
+                top:0%;
+                left: 50%;
+                right: 50%;
+            }
+            a{
+                text-decoration: none;
+            }
+    </style>
+
+    <script language = "JavaScript">
+        
+        const canvas = document.getElementById("canvas");
+        const ctx = canvas.getContext("2d");
+        var grd = ctx.createLinearGradient(0,0,0,800);
+        //grd.addColorStop(0, "#b19cd9");
+        grd.addColorStop(0.0,"#FFB6C1");
+        grd.addColorStop(0.43,"white");
+        grd.addColorStop(0.6,"green");
+        // Fill with gradient
+        ctx.fillStyle = grd;
+        ctx.fillRect(0, 0, 800, 600);
+        
+        //sun
+        ctx.beginPath();
+        ctx.arc(750, 50, 35, 0, 2 * Math.PI);
+        ctx.moveTo(770, 60);
+        ctx.arc(750, 60, 10, 0, 2 * Math.PI);
+        grd = ctx.createRadialGradient(750, 50, 10, 750, 50, 35);
+        grd.addColorStop(0, "#FFA500");
+        grd.addColorStop(1, "#FFDA46");
+        ctx.fillStyle = grd;
+        ctx.fill();
+        
+        //moon
+        ctx.beginPath()
+        ctx.arc(50, 50, 35, 0.2 * Math.PI, 1.4 * Math.PI);
+        ctx.quadraticCurveTo(30, 68, 77, 71);
+        ctx.fillStyle = "#FFEF77";
+        ctx.fill();
+        
+        // Create mountain gradient
+        var mountainGradient = ctx.createLinearGradient(87, 51, 90, 350); 
+        mountainGradient.addColorStop(0,"#355e3b");
+        mountainGradient.addColorStop(1,"white");
+        // Draw mountain shape
+        drawMount(-30, 300, 300);
+        drawMount(32, 300, 220);
+        drawMount(100, 300, 300);
+        drawMount(180, 340, 320);
+        drawMount(240, 340, 240);
+        function drawMount(x, y, height){
+            ctx.beginPath();
+            ctx.moveTo(x, y);
+            ctx.quadraticCurveTo(x + 70, y - height, x + 140, y);
+            ctx.fillStyle = mountainGradient;
+            ctx.fill();
+        }
+
+        //cloud
+        drawCloud(500, 70, 30);
+        drawCloud(200, 80, 20);
+        function drawCloud(x, y, radius) {
+            ctx.beginPath();
+            ctx.arc(x, y, radius, 0, 2 * Math.PI);
+            ctx.moveTo(x - 30, y + 10);
+            ctx.arc(x - radius, y + radius * 0.3, radius * 0.72, 0, 2 * Math.PI);
+            ctx.moveTo(x + 30, y + 10);
+            ctx.arc(x + radius, y + radius * 0.3, radius * 0.72, 0, 2 * Math.PI);
+            ctx.fillStyle = "white";
+            ctx.fill();
+        }
+        
+        //lake
+        ctx.beginPath();
+        ctx.moveTo(0, 300);
+        ctx.quadraticCurveTo(438, 268, 600, 500);
+        ctx.lineTo(0, 600);
+        ctx.lineTo(0, 250);
+        ctx.fillStyle = "#AEEEEE";
+        ctx.fill();
+
+        //using for loop to draw tree
+        drawTree(450, 270, 20, 8);
+        function drawTree(x, y, size, num) {
+            var grd = ctx.createLinearGradient(x, y, x, y+3*size); 
+            grd.addColorStop(0,"#4cbb17");
+            grd.addColorStop(0.45,"#2F7A11");
+            grd.addColorStop(1, "#255215");
+            for(j=0; j<num; j++){
+                ctx.beginPath();
+                var y1 = y;
+                var size1 = size;
+                for(i=0; i<3; i++){
+                    ctx.moveTo(x+j*50, y1);
+                    ctx.lineTo(x+j*50 + size1,y1 + size1);
+                    ctx.lineTo(x+j*50 - size1, y1 + size1);
+                    ctx.lineTo(x+j*50,y1);
+                    y1 += 10;
+                    size1 += 10;
+                }
+                ctx.fillStyle = grd;
+                ctx.fill();
+                ctx.beginPath();
+                ctx.rect(x+j*50 - 10, y1 + size1 - 20, 20, 20);
+                ctx.fillStyle = "#6A5536";
+                ctx.fill();
+             }
+        }	
+
+        //text
+        ctx.fillStyle = "pink";
+        ctx.font = "40px cursive";
+        ctx.fillText("An imaginary place", 350, 200);
+    </script>
+    
+    </body>
+</html>
+
